@@ -1,0 +1,17 @@
+{
+  "name": "blog-app",
+  "version": "1.0.0",
+  "description": "blog-app/ │ ├── public/            <-- Fichiers statiques (CSS, images…) │   └── styles.css     <-- Fichier CSS │ ├── views/             <-- Fichiers EJS (templates) │   ├── home.ejs       <-- Page d’accueil (liste des posts) │   ├── new-post.ejs   <-- Formulaire pour créer un post │   ├── edit-post.ejs  <-- Formulaire pour éditer un post │ ├── app.js             <-- Fichier principal Node.js / Express │ ├── package.json       <-- Informations sur le projet + dépendances │ └── README.md          <-- Documentation (facultatif mais recommandé)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
