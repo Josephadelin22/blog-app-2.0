@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <meta charset="UTF-8">
+    <title><%= t.home_title %></title>
+    <link rel="stylesheet" href="/styles.css">
+
+    <!--Jquery CDN-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-3fp2KQwPWjM59wsI1rIM9dL7wYZrxp13XWZ6vFh3z9k="
+            crossorigin="anonymous"></script>
+        
+</head>
+
+<body>
+    <h1><%= t.home_title %></h1>
+
+
+    <!-- Liens de changement de langue-->
+
+    <nav>
+        <a href="/fr">FR</a> | <a href="/en">EN</a>
+    </nav>
+
+    <!--lien pour creer un nouveau post-->
+
+    <a href="/<%= lang %>/new"><%= t.new_post %></a>
+
+    <button id="toggle-posts">Cacher les posts</button>
+
+    <!-- Liste des posts -->
+    <ul id="posts-list">
+        <% if (posts.length ===0) { %>
+            <li><%= t.no_posts %></li>
+        <% } else { %>
+            <% posts.forEach(post => { %>
+                <li>
+                    <h2><%= post.title %></h2>
+                    <p><%= post.content %></p>
+
+                    <!-- Lien pour modifier le post -->
+                     <a href="/<%= lang %>/edit/<%= post.id %>"><%= t.edit %></a>
+
+                     <!--supprimer avec confirmation-->
+                    <form action="/<%= lang %>/delete/<%= post.id %>" method="POST" class="delete-post-form" style="display:inline;">
+                        <button type="submit"><%= t.delete %></button>
+                    </form>
+
+                </li>
+            <%}); %>
+        <% } %>
+    </ul>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
