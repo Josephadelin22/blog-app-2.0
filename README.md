@@ -1,10 +1,10 @@
 blog-app/
 │
-├── public/            <-- Fichiers statiques (CSS, images…)
+├── public/            <-- Fichiers statiques 
 │   └── styles.css     <-- Fichier CSS
 │
-├── views/             <-- Fichiers EJS (templates)
-│   ├── home.ejs       <-- Page d’accueil (liste des posts)
+├── views/             <-- Fichiers EJS 
+│   ├── home.ejs       <-- Page d’accueil 
 │   ├── new-post.ejs   <-- Formulaire pour créer un post
 │   ├── edit-post.ejs  <-- Formulaire pour éditer un post
 │
@@ -12,5 +12,5 @@ blog-app/
 │
 ├── package.json       <-- Informations sur le projet + dépendances
 │
-└── README.md          <-- Documentation (facultatif mais recommandé)
+└── README.md          <-- Documentation 
 
