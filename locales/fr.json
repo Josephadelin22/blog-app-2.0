@@ -1,0 +1,22 @@
+{
+  "home_title": "Bienvenue sur exprimons nous",
+  "new_post": "Créer un nouveau post",
+  "edit": "Modifier",
+  "delete": "Supprimer",
+  "no_posts": "Aucun post pour le moment.",
+  "back": "Retour",
+  "create_post": "Créer un Nouveau Post",
+  "title": "Titre",
+  "content": "Contenu",
+  "publish": "Publier",
+  "edit_post": "Modifier le Post",
+  "update": "Mettre à jour",
+  "hide_posts": "Cacher les posts",
+  "show_posts": "Afficher les posts",
+  "confirm_delete": "Voulez-vous vraiment supprimer ce post ?",
+  "quotes_title": "Citation inspirante",
+  "new_quote": "Nouvelle citation",
+  "back_home": "Retour à l'accueil",
+  "credit_api": "Citations fournies par api.quotable.io",
+  "quote_api_error": "Impossible de récupérer une citation pour le moment."
+}

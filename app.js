@@ -1,6 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import fs from "fs"; // pour lire et écrire dans les fichiers
+import axios from "axios";
+import { error } from "console";
 
 const app = express(); // création de l'application Express
 let posts = []; // les posts seront stockés dans ma memoire.
@@ -78,11 +80,50 @@ app.get("/:lang/edit/:id", (req, res) => {
 });
 
 // route pour supprimer un post
-app.post("delete/:id", (req, res) => {
+app.post("/:lang/delete/:id", (req, res) => {
     posts = posts.filter(p => p.id != req.params.id); // filtre les posts pour supprimer celui avec l'ID correspondant
     res.redirect(`/${req.lang}`); // redirection vers la page d'accueil
 
 });
+
+// route pour afficher une citation inspirante
+app.get("/:lang/quotes", async (req, res) => {
+    try {
+        const response = await axios.get("https://zenquotes.io/api/random");
+        console.log("Reponse from Api", response.data);
+
+        const quote = response.data[0].q; // texte de la citation
+        const author = response.data[0].a; // auteur de la citation
+
+
+        res.render("quotes", {
+            quote,
+            author,
+            t: req.t, 
+            lang: req.lang,               
+            error: null
+        });
+        
+        // - la citation
+        // - l'auteur
+        // - l'objet de traduction pour la langue courante (t)
+        // - la langue courante (lang)
+        // - aucun message d'erreur
+
+    } catch (err) {
+        console.error("Erreur lors de la récupération de la citation :", err);
+        // Si l'appel API échoue, on affiche un message d'erreur
+        res.render("quotes", {
+            quote: null,
+            author: null,
+            t: req.t,
+            lang: req.lang,
+            error: req.quote_api_error || "Impossible de récupérer une citation pour le moment."
+        });
+    }
+});
+
+
 
 // lancement du serveur
 app.listen(3000, () => {

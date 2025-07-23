@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <meta charset="UTF-8">
+    <title><%= t.edit_post %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <header class="main-header">
+       <img src="/image/logo.jpg" class="logo" alt="logo planete" />
+        <h1 class="main-title"><%= t.edit_post %></h1>
+        <div class="slogan"><%= t.slogan || "Exprime-toi, partage, inspire !" %></div>
+
+    </header>
+
+    <!--Formulaire d'edition de poste-->
+    <form action="/<%= lang %>/edit/<%= post.id %>" method="POST" class="edit-post-form">
+        <!-- label et champ pour le titre -->
+        <labsel for="title"><%= t.title %> :</label>
+        <input type="text" id="title" name="title" value="<%= post.title %>" required>
+
+        <!-- label et champ pour le contenu -->
+        <label for="content"><%= t.content %> :</label>
+        <textarea id="content" name="content" rows="6" required><%= post.content %></textarea>
+
+        <!--bouton pour valider la modification-->
+        <button type="submit"><%= t.update %></button>
+    
+    </form>
+
+    <!-- Lien pour revenir à la page d'accueil -->
+    <a href="/<%= lang %>"><%= t.back %></a>
+
+</body>
+</html>

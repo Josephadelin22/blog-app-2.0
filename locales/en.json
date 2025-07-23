@@ -1,0 +1,22 @@
+{
+  "home_title": "Welcome to our website",
+  "new_post": "Create a New Post",
+  "edit": "Edit",
+  "delete": "Delete",
+  "no_posts": "No posts yet.",
+  "back": "Back",
+  "create_post": "Create a New Post",
+  "title": "Title",
+  "content": "Content",
+  "publish": "Publish",
+  "edit_post": "Edit Post",
+  "update": "Update",
+  "hide_posts": "Hide Posts",
+  "show_posts": "Show Posts",
+  "confirm_delete": "Do you really want to delete this post?",
+  "quotes_title": "Inspiring Quote",
+  "new_quote": "New quote",
+  "back_home": "Back to home",
+  "credit_api": "Quotes provided by api.quotable.io",
+  "quote_api_error": "Unable to fetch a quote at the moment."
+}

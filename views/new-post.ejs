@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <meta charset="UTF-8">
+    <title><%= t.create_post %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!--titre principal de la page-->
+    <header class="main-header">
+        <img src="/image/logo.jpg" class="logo" alt="logo planete" />
+        <h1 class="main-title"><%= t.create_post %></h1>
+        <div class="slogan"><%= t.slogan || "Exprime-toi, partage, inspire !" %></div>
+
+    </header>
+
+    <!-- Formulaire pour créer un nouveau post -->
+     <form action="/<%= lang %>/new" method="POST">
+        <!-- Champ pour le titre du post -->
+         <label for="title"><%= t.title %> :</label><br>
+         <input type="text" id="title" name="title" required><br><br>
+
+        <!-- Champ pour le contenu du post -->
+        <label for="content"><%= t.content %> :</label><br>
+        <textarea id="content" name="content" rows="5" cols="30" required></textarea><br><br>
+
+        <!-- Bouton pour soumettre le formulaire -->
+         <button type="submit"><%= t.publish %></button>
+
+     </form>
+         <!-- Lien pour revenir à la page d'accueil -->
+        
+        <a href="/<%= lang %>"><%= t.back %></a>
+
+    
+
+         
+
+</body>
+</html>

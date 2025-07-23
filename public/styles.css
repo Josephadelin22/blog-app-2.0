@@ -1,0 +1,254 @@
+/*import de google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@400;700&display=swap');
+
+body {
+    font-family: 'Inter', 'Merriweather', Arial, sans-serif; /*police principale + secondaire pour titres*/
+    background: linear-gradient(110deg, rgba(34,49,66,0.83) 0%, rgba(130,164,255,0.13)100%),
+                url('/image/1000152925.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #e9eefe;
+    min-height: 100vh;
+    padding: 0 10px 40px 10px;
+    max-width: 760px;
+    margin: auto;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(20,26,40, 0.58);
+    pointer-events: none;
+    z-index: 0; /* Mettre l'overlay derrière le contenu */
+}
+
+body, .main-header, .main-title, .slogan, #post-list, nav {
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-family: 'Merriweather', serif;
+    color: #9ecfff;
+    margin-top: 40px;
+    margin-bottom: 18px;
+    font-size: 2.5em;
+    text-align: center;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    text-shadow: 0 2px 20px #18398b80;
+}
+
+.slogan {
+    font-family:  'Inter', Arial, sans-serif;
+    color: #9bb8e9;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 36px;
+    letter-spacing: 0.3px;
+    
+    
+}
+
+
+/* --- Barre de navigation : centrée, liens arrondis, animation au survol --- */
+nav {
+    text-align: center;
+    margin-bottom: 30px;
+}
+nav a {
+    color: #5edfff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 9px;
+    padding: 4px 15px;
+    border-radius: 5px;
+    transition: background 0.2s, color 0.2s; box-shadow: 0.15s;
+}
+nav a:hover, nav a.active {
+    background: rgba(46, 136, 245, 0.14);
+    color: #fff;
+    box-shadow: 0 0 8px #5edfff55;
+}
+
+/* --- Liens classiques, style moderne --- */
+a {
+    color: #85a8ff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* --- Boutons modernes : dégradé bleu, coins très arrondis, police visible --- */
+button, input[type="submit"] {
+    background: linear-gradient(90deg, #294ea6 30%, #5edfff 100%);
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 24px; /* Bouton pilule */
+    font-size: 1.09rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 12px 0 15px 0;
+    box-shadow: 0 2px 8px #21418a60;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.22s;
+}
+button:hover, input[type="submit"]:hover {
+    background: linear-gradient(90deg, #3777c6 10%, #b3f0f5 90%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 32px #21418a80;
+}
+
+button:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px #21418a70;
+}
+
+/* --- Style des formulaires : carte blanche, ombre douce, arrondi --- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 22px auto 38px auto;
+    padding: 25px 28px;
+    background: rgba(24, 33, 64, 0.94);
+    border-radius: 14px;
+    box-shadow: 0 4px 18px #254373d6;
+    max-width: 450px;
+}
+
+label {
+    font-weight: 500;
+    color: #9ecfff;
+}
+
+/* --- Inputs et textarea : arrondis, fond clair, effet focus --- */
+input[type="text"], textarea {
+    padding: 11px 10px;
+    border-radius: 7px;
+    border: 1.2px solid #5edfff88;
+    font-size: 1rem;
+    font-family: inherit;
+    margin-bottom: rgba(230,243,255,0.13);
+    background: #e9eefe;
+    transition: border 0.18s, background 0.23s;
+}
+input[type="text"]:focus, textarea:focus {
+    border: 1.5px solid #b3f0f5;
+    outline: none;
+    background: rgba(180,230,255,0.12);
+}
+
+/* --- Liste des posts : pas de puce, cartes aérées, ombre douce --- */
+ul#post-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+ul#post-list li {
+    background: rgba(24, 33, 64, 0.85);
+    margin-bottom: 22px;
+    padding: 22px 20px 17px 20px;
+    border-radius: 13px;
+    box-shadow: 0 2px 10px #2a407880;
+    transition: box-shadow 0.2s, transform 0.18s, opacity 0.5s;
+    position: relative;
+    color: #f1f6fd;
+    opacity: 0;
+    animation: fadeInPost 0.7s forwards;
+}
+
+@keyframes fadeInPost {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+ul#post-list li:hover {
+    box-shadow: 0 6px 28px #3777c6b8;
+    transform: scale(1.018);
+}
+
+ul#post-list li h2 {
+    color: #b3f0f5;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    font-family: 'Merriweather', serif;
+    text-shadow: 0 1px 10px #5edfff50;
+}
+
+ul#post-list li p {
+    font-size: 1.09rem;
+    margin-bottom: 14px;
+    color: #c3e3ff;
+    line-height: 1.6;
+}
+
+/* --- Liens d'action (modifier, supprimer) dans les posts --- */
+ul#post-list a {
+    font-size: 0.99rem;
+    margin-right: 16px;
+    color: #62d0fa;
+}
+ul#post-list a:hover {
+    color: #fff;
+    text-shadow: 0 0 8px #5edfff55;
+}
+ul#post-list form.delete-post-form {
+    display: inline;
+}
+
+/* --- Responsive design : adapte la mise en page sur mobile --- */
+
+
+.main-header .logo {
+        
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+        margin: 0 auto 5px auto;
+        display: block;
+        border-radius: 50%;
+        box-shadow: 0 4px 32px #0008, 0 1px 3px #85a8ff80;
+        filter: drop-shadow(0 3px 18px #0007);
+        transition: transform 0.2s;
+}
+
+
+.main-header .logo:hover {
+    transform: scale(1.10) rotate(-8deg);
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 13px 2px 10px 2px;
+        font-size: 1rem;
+        max-width: 100vw;
+    }
+    h1 {
+        font-size: 1.3rem;
+        margin-top: 15px;
+        margin-bottom: 12px;
+    }
+    .slogan {
+        font-size: 0.97rem;
+        margin-bottom: 17px;
+    }
+    form, ul#post-list li {
+        max-width: 99vw;
+        padding: 8px 2vw;
+    }
+    .main-header .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+   
+}
+
+
+
+

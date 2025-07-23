@@ -2,19 +2,28 @@
 <html lang="<%= lang %>">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= t.home_title %></title>
     <link rel="stylesheet" href="/styles.css">
 
     <!--Jquery CDN-->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-3fp2KQwPWjM59wsI1rIM9dL7wYZrxp13XWZ6vFh3z9k="
+            integrity="sha256-5N2Fp7yQpDP3Hds9U8Z3WQ2ycBSF6jv1yeA9XcGJN60="
             crossorigin="anonymous"></script>
         
 </head>
 
 <body>
-    <h1><%= t.home_title %></h1>
 
+    <header class="main-header">
+        <img src="/image/logo.jpg" class="logo" alt="logo planete" />
+        <h1 class="main-title"><%= t.home_title %></h1>
+        <div class="slogan"><%= t.slogan || "Exprime-toi, partage, inspire !" %></div>
+
+    </header>
+<!-- <pre><%= JSON.stringify(t, null, 2)%> </pre>-->
+
+   
 
     <!-- Liens de changement de langue-->
 
@@ -22,15 +31,19 @@
         <a href="/fr">FR</a> | <a href="/en">EN</a>
     </nav>
 
+    <!-- lien pour les citations-->
+    <div style="margin: 10px 0;">
+        <a href="/<%= lang %>/quotes"><%= t.quotes_title %></a>
+    </div>
     <!--lien pour creer un nouveau post-->
 
     <a href="/<%= lang %>/new"><%= t.new_post %></a>
 
-    <button id="toggle-posts">Cacher les posts</button>
+    <button id="toggle-posts"><%= t.hide_posts %></button>
 
     <!-- Liste des posts -->
-    <ul id="posts-list">
-        <% if (posts.length ===0) { %>
+    <ul id="post-list">
+        <% if (posts.length === 0) { %>
             <li><%= t.no_posts %></li>
         <% } else { %>
             <% posts.forEach(post => { %>
@@ -51,6 +64,16 @@
         <% } %>
     </ul>
 
+    <script>
+        const showText = "<%= t.show_posts %>";
+        const hideText = "<%= t.hide_posts %>";
+        const deleteConfirmMsg = "<%= t.confirm_delete %>"
+    </script>
+    
+    
+
     <script src="/js/main.js"></script>
+
+    
 </body>
 </html>
