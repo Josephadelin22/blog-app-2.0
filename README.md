@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 blog-app/
 │
 ├── public/            <-- Fichiers statiques 
@@ -14,3 +15,6 @@ blog-app/
 │
 └── README.md          <-- Documentation 
 
+=======
+# blog-app-2.0
+>>>>>>> cb634b22c2d4364ccf7498a3801f3e191d771bb9
