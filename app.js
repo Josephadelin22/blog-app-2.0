@@ -123,9 +123,13 @@ app.get("/:lang/quotes", async (req, res) => {
     }
 });
 
+// Redirige toute requête racine vers /fr
+app.get('/', (req, res) => {
+    res.redirect('/fr');
+});
 
 
 // lancement du serveur
-app.listen(3000, () => {
+app.listen(3000, '0.0.0.0', () => {
     console.log("Server is running on port 3000");
 });
