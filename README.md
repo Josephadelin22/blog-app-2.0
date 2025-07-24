@@ -1,20 +1,27 @@
-<<<<<<< HEAD
-blog-app/
-│
-├── public/            <-- Fichiers statiques 
-│   └── styles.css     <-- Fichier CSS
-│
-├── views/             <-- Fichiers EJS 
-│   ├── home.ejs       <-- Page d’accueil 
-│   ├── new-post.ejs   <-- Formulaire pour créer un post
-│   ├── edit-post.ejs  <-- Formulaire pour éditer un post
-│
-├── app.js             <-- Fichier principal Node.js / Express
-│
-├── package.json       <-- Informations sur le projet + dépendances
-│
-└── README.md          <-- Documentation 
+# 🌍 Blog App 2.0 — Bilingual Blog Application with API Integration
 
-=======
-# blog-app-2.0
->>>>>>> cb634b22c2d4364ccf7498a3801f3e191d771bb9
+A simple, modern blog application built with Node.js, Express.js, and EJS templating, allowing users to create, edit, and delete posts in both English and French. Includes an inspirational quotes feature fetched from an external API.
+
+# 🚀 Features
+
+- Create, edit, and delete blog posts (in-memory storage)
+- Bilingual UI: English 🇬🇧 and French 🇫🇷 (dynamic interface & translations)
+- Inspirational quote: Fetch a random quote via the [ZenQuotes API](https://zenquotes.io/)
+- Modern, responsive design (HTML, CSS)
+- Deployed on two web servers with load balancing using HAProxy
+
+
+
+# 📦 Local Setup
+
+# Prerequisites
+
+- [Node.js](https://nodejs.org/) & [npm](https://www.npmjs.com/)
+- [Git](https://git-scm.com/)
+
+# Clone the Repository
+
+```bash
+git clone https://github.com/Josephadelin22/blog-app-2.0.git
+cd blog-app-2.0
+
