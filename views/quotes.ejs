@@ -28,8 +28,9 @@
     <!-- bouton pour recharger et avoir une nouvelle citation-->
 
     <form method="get" action="/<%=lang %>/quotes">
-        <button type="submit"><%= t.new_quote %></button>
-
+        <input type="text" name="q" placeholder="Search keyword (en)">
+        <button type="submit"><%= t.search %></button>
+        <button type="submit" name="random" value="1"><%= t.new_quote %></button>
     </form>
 
     <br>

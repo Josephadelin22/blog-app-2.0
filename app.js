@@ -123,6 +123,38 @@ app.get("/:lang/quotes", async (req, res) => {
     }
 });
 
+
+app.get("/:lang/quotes", async (req, res) => {
+    try {
+        let quote, author;
+        const search = req.query.q;
+        if (search) {
+            // Recherche: recupere plusieurs citations et filtre par mot-clé
+            const resp = await axios.get("https://zenquotes.io/api/rendom");
+            const results = resp.data.filter(q => 
+                q.q.toLowerCase().includes(search.toLowerCase())
+            );
+            if (results.length > 0) {
+                quote = results[0].q;
+                author = results[0].a;
+            } else {
+                quote = null;
+                autho = null;
+            }
+        } else {
+
+            // Citation aléatoire: recupere une citation aléatoire
+            const resp = await axios.get("https://zenquotes.io/api/random");
+            quote = resp.data[0].q;
+            author = resp.data[0].a;
+        }
+        res.render("quotes", { quote, author, t: req.t, lang: req.lang, error: null });
+    } catch (err) {
+        console.error("Erreur lors de la récupération de la citation :", err);
+        res.render("quotes", { quote: null, author: null, t: req.t, lang: req.lang, error: "Impossible de récupérer une citation pour le moment." });
+    }
+});
+
 // Redirige toute requête racine vers /fr
 app.get('/', (req, res) => {
     res.redirect('/fr');
