@@ -18,5 +18,13 @@
   "new_quote": "New quote",
   "back_home": "Back to home",
   "credit_api": "Quotes provided by api.quotable.io",
-  "quote_api_error": "Unable to fetch a quote at the moment."
+  "quote_api_error": "Unable to fetch a quote at the moment.",
+
+  "books_title": "Book Search",
+  "books_link": "Search for Books",
+  "search_placeholder": "Search for a book...",
+  "search": "Search",
+  "no_books_found": "No books found.",
+  "author": "Author(s)"
 }
+

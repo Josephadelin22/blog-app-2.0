@@ -8,7 +8,13 @@ const app = express(); // création de l'application Express
 let posts = []; // les posts seront stockés dans ma memoire.
 
 app.set("view engine", "ejs");
-app.use(express.static("public")); // pour mon fichier css
+app.use(express.static("public", {
+    etag: false,
+    lastModified: false,
+    setHeaders: (res) => {
+        res.setHeader("Cache-Control", "no-store"); // désactive la mise en cache pour les fichiers statiques
+    }
+})); // pour mon fichier css
 app.use(bodyParser.urlencoded({ extended: true })); // pour parser les données du formulaire
 
 
@@ -36,7 +42,7 @@ app.use("/:lang", (req, res, next) => {
 });
 // route principale :  affichage des posts
 app.get("/:lang", (req, res) => {
-    res.render("home", { posts: posts, t: req.t, lang: req.lang }); // envoie les posts et les traductions à la vue
+    res.render("home", { posts, t: req.t, lang: req.lang }); // envoie les posts et les traductions à la vue
 
 });
 
@@ -50,7 +56,7 @@ app.post("/:lang/new", (req, res) => {
     const newPost = {
         id: Date.now(), // utilisation de Date.now() pour générer un ID unique
         title: req.body.title,
-        content:req.body.content
+        content: req.body.content
     };
     posts.push(newPost); // ajout du nouveau post à la liste des posts
     res.redirect(`/${req.lang}`); // redirection vers la page d'accueil pour afficher le nouveau post
@@ -118,42 +124,43 @@ app.get("/:lang/quotes", async (req, res) => {
             author: null,
             t: req.t,
             lang: req.lang,
-            error: req.quote_api_error || "Impossible de récupérer une citation pour le moment."
+            error: "Impossible de récupérer une citation pour le moment."
         });
     }
 });
 
+app.get("/:lang/books", async (req, res) => {
+  // recupere le texte de recherche , ou une chaine vide
+  const query = req.query.q || "";
+  let books = [];
+  let error = null;
 
-app.get("/:lang/quotes", async (req, res) => {
+  if (query) {
     try {
-        let quote, author;
-        const search = req.query.q;
-        if (search) {
-            // Recherche: recupere plusieurs citations et filtre par mot-clé
-            const resp = await axios.get("https://zenquotes.io/api/rendom");
-            const results = resp.data.filter(q => 
-                q.q.toLowerCase().includes(search.toLowerCase())
-            );
-            if (results.length > 0) {
-                quote = results[0].q;
-                author = results[0].a;
-            } else {
-                quote = null;
-                autho = null;
-            }
-        } else {
-
-            // Citation aléatoire: recupere une citation aléatoire
-            const resp = await axios.get("https://zenquotes.io/api/random");
-            quote = resp.data[0].q;
-            author = resp.data[0].a;
-        }
-        res.render("quotes", { quote, author, t: req.t, lang: req.lang, error: null });
+        // on appelle l'api de google books
+        const response = await axios.get(
+            `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}`
+        );
+        // on recupere les livres de la reponse
+        books = response.data.items || [];
     } catch (err) {
-        console.error("Erreur lors de la récupération de la citation :", err);
-        res.render("quotes", { quote: null, author: null, t: req.t, lang: req.lang, error: "Impossible de récupérer une citation pour le moment." });
+        console.error("Erreur Api Books:", err);
+        error = "Erreurs lors de la recuperation du livre";
     }
+  }
+
+  // on affiche la page books.ejs
+  res.render("books", {
+    t: req.t,   // texte traduits
+    lang: req.lang, // langue courante
+    books, // liste des livres trouve ou vide
+    query,  // recherche effectuée
+    error // message derreur si l'api echoue
+  
+    });
 });
+
+
 
 // Redirige toute requête racine vers /fr
 app.get('/', (req, res) => {

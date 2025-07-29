@@ -1,0 +1,53 @@
+<! DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.books_title %></title>
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+    <h1><%= t.books_title %></h1>
+    <form method="get" action="/<%= lang %>/books">
+        <input type="text" name="q" placeholder="<%= t.search_placeholder %>" value="<%= query || '' %>" required>
+        <button type="submit"><%= t.search || 'Rechercher' %></button>
+    </form>
+     <!-- si lapi ne repond on affiche d'erreur-->
+    <% if (error) { %>
+        <div class="error"><%= error %></div>
+    <% } %>
+
+    <!-- on affiche des resultats avec linteraction de luser-->
+    <% if (!error && query && books.length === 0 ) { %>
+        <p><%= t.no_books_found || 'Aucun livre trouve.' %></p>
+    <% } %>
+
+    <% if (books.length > 0) { %>
+        <ul class="book-list">
+            <% books.forEach(book => {
+                const info = book.volumeInfo;
+            %>
+                <li class="book-card">
+                    <h2><%= info.title %></h2>
+
+                    <% if (info.authors) { %>
+                        <p><strong><%= t.author %></strong> <%=info.authors.join(", ") %></p>
+                    <% } %>
+
+                    <% if (info.description) { %>
+                         <P><%= info.description.substring(0, 200) %>...</P>
+                    <% } %>
+
+                    <% if (info.imageLinks && info.imageLinks.thumbnail) { %>
+                          <img src="<%= info.imageLinks.thumbnail %>" alt="Couverture de <%= info.title %>">
+                    <% } %>
+                
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+</body>
+</html>

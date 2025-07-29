@@ -18,5 +18,13 @@
   "new_quote": "Nouvelle citation",
   "back_home": "Retour à l'accueil",
   "credit_api": "Citations fournies par api.quotable.io",
-  "quote_api_error": "Impossible de récupérer une citation pour le moment."
+  "quote_api_error": "Impossible de récupérer une citation pour le moment.",
+
+  "books_title": "Recherche de livres",
+  "books_link": "Chercher des livres",
+  "search_placeholder": "Tapez un titre, un auteur…",
+  "search": "Rechercher",
+  "no_books_found": "Aucun livre trouvé.",
+  "author": "Auteur(s)"
+
 }
