@@ -5,6 +5,8 @@ import axios from "axios";
 import { error } from "console";
 
 const app = express(); // création de l'application Express
+const PORT = process.env.PORT || 3000; // port d'écoute, par défaut 3000
+
 let posts = []; // les posts seront stockés dans ma memoire.
 
 app.set("view engine", "ejs");
@@ -169,6 +171,6 @@ app.get('/', (req, res) => {
 
 
 // lancement du serveur
-app.listen(3000, '0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log("Server is running on port 3000");
 });
