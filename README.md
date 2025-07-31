@@ -25,3 +25,20 @@ A simple, modern blog application built with Node.js, Express.js, and EJS templa
 git clone https://github.com/Josephadelin22/blog-app-2.0.git
 cd blog-app-2.0
 
+```
+
+# Dependencies
+
+```bash
+npm install
+
+```
+# To run the application
+
+```bash
+node app.js
+```
+
+
+
+
