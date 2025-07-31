@@ -5,7 +5,7 @@ import axios from "axios";
 import { error } from "console";
 
 const app = express(); // création de l'application Express
-const PORT = process.env.PORT || 8080; // port d'écoute, par défaut 3000
+const PORT = process.env.PORT || 3000; // port d'écoute, par défaut 3000
 
 let posts = []; // les posts seront stockés dans ma memoire.
 

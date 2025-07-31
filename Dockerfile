@@ -14,10 +14,10 @@ RUN npm ci --only=production
 COPY . .
 
 # Définit la variable d’environnement pour le port
-ENV PORT=8080
+ENV PORT=3000
 
 # Expose le port sur lequel l'application écoute
-EXPOSE 8080
+EXPOSE 3000
 
 # Définit la commande à exécuter lorsque le conteneur démarre
 CMD ["node", "app.js"]
