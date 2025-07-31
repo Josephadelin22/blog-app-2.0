@@ -25,3 +25,125 @@ A simple, modern blog application built with Node.js, Express.js, and EJS templa
 git clone https://github.com/Josephadelin22/blog-app-2.0.git
 cd blog-app-2.0
 
+```
+
+# Dependencies
+
+```bash
+npm install
+
+```
+# To run the application
+
+```bash
+node app.js
+```
+
+
+## 🐳 **Docker Setup**
+
+### 📄 **Dockerfile**
+The application is fully containerized using Docker.  
+Here’s how to build and run the container:
+
+#### 🔨 **Build the image**
+```bash
+docker build -t josephadelin/blog-app:v1 .
+```
+
+#### ▶️ **Run the container**
+```bash
+docker run -d --name blog-app -p 8080:8080 josephadelin/blog-app:v1
+```
+
+👉 App will now be reachable at **http://localhost:8080**
+
+---
+
+## 📤 **Push to Docker Hub**
+```bash
+docker login
+docker tag josephadelin/blog-app:v1 josephadelin/blog-app:latest
+docker push josephadelin/blog-app:v1
+```
+
+---
+
+## 🌐 **Deployment on Web Servers**
+
+We used the **Web Infra Lab** setup with three containers:
+- **web-01** (Docker host)
+- **web-02** (Docker host)
+- **lb-01** (HAProxy load balancer)
+
+### 🖥️ **Steps on web-01 & web-02**
+```bash
+docker pull josephadelin/blog-app:v1
+docker run -d --name blog-app --restart unless-stopped -p 8080:8080 josephadelin/blog-app:v1
+```
+
+✅ The app is now running on:
+- http://web-01:8080
+- http://web-02:8080
+
+---
+
+## ⚖️ **HAProxy Load Balancer (lb-01)**
+
+### 🛠️ **Configuration**
+Add the following to `/etc/haproxy/haproxy.cfg`:
+```haproxy
+frontend http-in
+    bind *:80
+    default_backend webapps
+
+backend webapps
+    balance roundrobin
+    server web01 172.20.0.11:8080 check
+    server web02 172.20.0.12:8080 check
+```
+
+Reload HAProxy:
+```bash
+docker exec -it lb-01 sh -c 'haproxy -sf $(pidof haproxy) -f /etc/haproxy/haproxy.cfg'
+```
+
+---
+
+## 🧪 **Testing**
+From your local machine:
+```bash
+curl http://localhost
+```
+➡️ Requests alternate between **web-01** and **web-02** (round-robin load balancing).
+
+---
+
+## 📚 **APIs Used**
+- [ZenQuotes API](https://zenquotes.io/) – for inspirational quotes  
+- [Google Books API](https://developers.google.com/books) – for book search feature
+
+---
+
+## 🛠️ **Challenges Faced**
+- ⚠️ **Docker-in-Docker issues** (permissions & `overlayfs` errors)
+- ⚠️ **Port conflicts** (8080 already used by other containers)
+- ✅ **Workaround**: Switched to manual container run and documented every limitation
+
+---
+
+## 📹 **Demo Video**
+🎥 A **2-minute demo video** has been recorded showing:
+- Local setup and usage
+- Docker container running the app
+- Explanation of deployment steps & HAProxy configuration
+
+---
+
+## ✍️ **Author**
+👨‍💻 **Joseph Boussamba Quenum**  
+🚀 Passionate about **Web Development & DevOps**
+
+
+
+
