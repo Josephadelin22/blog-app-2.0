@@ -1,8 +1,8 @@
-# 🌍 Blog App 2.0 — Bilingual Blog Application with API Integration
+#  Blog App 2.0 — Bilingual Blog Application with API Integration
 
 A simple, modern blog application built with Node.js, Express.js, and EJS templating, allowing users to create, edit, and delete posts in both English and French. Includes an inspirational quotes feature fetched from an external API.
 
-# 🚀 Features
+#  Features
 
 - Create, edit, and delete blog posts (in-memory storage)
 - Bilingual UI: English 🇬🇧 and French 🇫🇷 (dynamic interface & translations)
@@ -12,7 +12,7 @@ A simple, modern blog application built with Node.js, Express.js, and EJS templa
 
 
 
-# 📦 Local Setup
+#  Local Setup
 
 # Prerequisites
 
@@ -40,27 +40,27 @@ node app.js
 ```
 
 
-## 🐳 **Docker Setup**
+##  Docker Setup
 
-### 📄 **Dockerfile**
+###  Dockerfile
 The application is fully containerized using Docker.  
 Here’s how to build and run the container:
 
-#### 🔨 **Build the image**
+####  Build the image
 ```bash
 docker build -t josephadelin/blog-app:v1 .
 ```
 
-#### ▶️ **Run the container**
+#### ▶ Run the container
 ```bash
 docker run -d --name blog-app -p 8080:8080 josephadelin/blog-app:v1
 ```
 
-👉 App will now be reachable at **http://localhost:8080**
+App will now be reachable at http://localhost:3000
 
 ---
 
-## 📤 **Push to Docker Hub**
+## Push to Docker Hub
 ```bash
 docker login
 docker tag josephadelin/blog-app:v1 josephadelin/blog-app:latest
@@ -69,28 +69,28 @@ docker push josephadelin/blog-app:v1
 
 ---
 
-## 🌐 **Deployment on Web Servers**
+##  **Deployment on Web Servers**
 
 We used the **Web Infra Lab** setup with three containers:
 - **web-01** (Docker host)
 - **web-02** (Docker host)
 - **lb-01** (HAProxy load balancer)
 
-### 🖥️ **Steps on web-01 & web-02**
+### 🖥 **Steps on web-01 & web-02
 ```bash
 docker pull josephadelin/blog-app:v1
-docker run -d --name blog-app --restart unless-stopped -p 8080:8080 josephadelin/blog-app:v1
+docker run -d --name blog-app --restart unless-stopped -p 3000:3000 josephadelin/blog-app:v1
 ```
 
 ✅ The app is now running on:
-- http://web-01:8080
-- http://web-02:8080
+- http://web-01:3000
+- http://web-02:3000
 
 ---
 
-## ⚖️ **HAProxy Load Balancer (lb-01)**
+## ⚖️ HAProxy Load Balancer (lb-01)
 
-### 🛠️ **Configuration**
+### Configuration
 Add the following to `/etc/haproxy/haproxy.cfg`:
 ```haproxy
 frontend http-in
@@ -99,8 +99,8 @@ frontend http-in
 
 backend webapps
     balance roundrobin
-    server web01 172.20.0.11:8080 check
-    server web02 172.20.0.12:8080 check
+    server web01 172.20.0.11:3000 check
+    server web02 172.20.0.12:3000 check
 ```
 
 Reload HAProxy:
@@ -110,39 +110,39 @@ docker exec -it lb-01 sh -c 'haproxy -sf $(pidof haproxy) -f /etc/haproxy/haprox
 
 ---
 
-## 🧪 **Testing**
+##  Testing
 From your local machine:
 ```bash
-curl http://localhost
+curl http://localhost:3000
 ```
-➡️ Requests alternate between **web-01** and **web-02** (round-robin load balancing).
+➡Requests alternate between web-01 and web-02 (round-robin load balancing).
 
 ---
 
-## 📚 **APIs Used**
+##  APIs Used
 - [ZenQuotes API](https://zenquotes.io/) – for inspirational quotes  
 - [Google Books API](https://developers.google.com/books) – for book search feature
 
 ---
 
-## 🛠️ **Challenges Faced**
-- ⚠️ **Docker-in-Docker issues** (permissions & `overlayfs` errors)
-- ⚠️ **Port conflicts** (8080 already used by other containers)
-- ✅ **Workaround**: Switched to manual container run and documented every limitation
+##  Challenges Faced
+-  Docker-in-Docker issues** (permissions & `overlayfs` errors)
+-  Port conflicts (8080 already used by other containers)
+- Workaround: Switched to manual container run and documented every limitation
 
 ---
 
-## 📹 **Demo Video**
-🎥 A **2-minute demo video** has been recorded showing:
+## 📹 Demo Video
+🎥 A 2-minute demo video** has been recorded showing:
 - Local setup and usage
 - Docker container running the app
 - Explanation of deployment steps & HAProxy configuration
 
 ---
 
-## ✍️ **Author**
-👨‍💻 **Joseph Boussamba Quenum**  
-🚀 Passionate about **Web Development & DevOps**
+## ✍️ Author
+Joseph Boussamba Quenum  
+Passionate about Web Development & DevOps
 
 
 
