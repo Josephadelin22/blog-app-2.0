@@ -125,7 +125,8 @@ curl http://localhost:3000
 
 
 
-  Challenges Faced
+##Challenges Faced
+
 when you try to connect docker in your web servers dockers refuses to connect with git pull.
 
 
