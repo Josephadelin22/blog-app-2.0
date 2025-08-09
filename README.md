@@ -5,7 +5,7 @@ A simple, modern blog application built with Node.js, Express.js, and EJS templa
 #  Features
 
 - Create, edit, and delete blog posts (in-memory storage)
-- Bilingual UI: English 🇬🇧 and French 🇫🇷 (dynamic interface & translations)
+- Bilingual UI: English  and French  (dynamic interface & translations)
 - Inspirational quote: Fetch a random quote via the [ZenQuotes API](https://zenquotes.io/)
 - Modern, responsive design (HTML, CSS)
 - Deployed on two web servers with load balancing using HAProxy
@@ -69,20 +69,20 @@ docker push josephadelin/blog-app:v1
 
 ---
 
-##  **Deployment on Web Servers**
+##  Deployment on Web Servers
 
-We used the **Web Infra Lab** setup with three containers:
-- **web-01** (Docker host)
-- **web-02** (Docker host)
-- **lb-01** (HAProxy load balancer)
+We used the Web Infra Lab setup with three containers:
+- web-01 (Docker host)
+- web-02 (Docker host)
+- lb-01 (HAProxy load balancer)
 
-### 🖥 **Steps on web-01 & web-02
+###  Steps on web-01 & web-02
 ```bash
 docker pull josephadelin/blog-app:v1
 docker run -d --name blog-app --restart unless-stopped -p 3000:3000 josephadelin/blog-app:v1
 ```
 
-✅ The app is now running on:
+ The app is now running on:
 - http://web-01:3000
 - http://web-02:3000
 
@@ -110,7 +110,7 @@ docker exec -it lb-01 sh -c 'haproxy -sf $(pidof haproxy) -f /etc/haproxy/haprox
 
 ---
 
-##  Testing
+  Testing
 From your local machine:
 ```bash
 curl http://localhost:3000
@@ -123,24 +123,22 @@ curl http://localhost:3000
 - [ZenQuotes API](https://zenquotes.io/) – for inspirational quotes  
 - [Google Books API](https://developers.google.com/books) – for book search feature
 
----
 
-##  Challenges Faced
--  Docker-in-Docker issues** (permissions & `overlayfs` errors)
--  Port conflicts (8080 already used by other containers)
-- Workaround: Switched to manual container run and documented every limitation
 
----
+  Challenges Faced
+when you try to connect docker in your web servers dockers refuses to connect with git pull.
 
-## 📹 Demo Video
-🎥 A 2-minute demo video** has been recorded showing:
+
+
+ Demo Video
+ A 2-minute demo video** has been recorded showing:
 - Local setup and usage
 - Docker container running the app
 - Explanation of deployment steps & HAProxy configuration
 
----
 
-## ✍️ Author
+
+ Author
 Joseph Boussamba Quenum  
 Passionate about Web Development & DevOps
 
